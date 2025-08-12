@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lepton Roket Takımı | TEKNOFEST 2025</title>
+    <meta name="description" content="Türkiye'nin geleceğini gökyüzüne taşıyoruz. TEKNOFEST 2025 yarışmalarına katılacak lise düzeyinde roket takımı.">
+    <meta name="keywords" content="roket, TEKNOFEST, uzay, teknoloji, lise, öğrenci, yarışma, Türkiye">
+    <meta name="author" content="Lepton Roket Takımı">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Lepton Roket Takımı | TEKNOFEST 2025">
+    <meta property="og:description" content="Türkiye'nin geleceğini gökyüzüne taşıyoruz.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="tr_TR">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                        'mono': ['Orbitron', 'monospace']
+                    },
+                    colors: {
+                        slate: {
+                            950: '#020617'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            overflow-x: hidden;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+        
+        /* Smooth animations */
+        * {
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+        }
+        
+        /* Animation classes */
+        @keyframes bounce {
+            0%, 100% { transform: translateY(-25%); animation-timing-function: cubic-bezier(0.8,0,1,1); }
+            50% { transform: none; animation-timing-function: cubic-bezier(0,0,0.2,1); }
+        }
+        
+        @keyframes pulse {
+            50% { opacity: .5; }
+        }
+        
+        @keyframes ping {
+            75%, 100% { transform: scale(2); opacity: 0; }
+        }
+        
+        .animate-bounce { animation: bounce 1s infinite; }
+        .animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        .animate-ping { animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite; }
+        
+        /* Mobile menu animation */
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+        }
+        
+        .mobile-menu.open {
+            max-height: 400px;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-slate-950 text-slate-100 font-sans">
+    <!-- Background gradients -->
+    <div class="fixed inset-0 bg-gradient-radial from-cyan-400/10 via-transparent to-transparent pointer-events-none"></div>
+    <div class="fixed inset-0 bg-gradient-radial from-purple-400/10 via-transparent to-transparent pointer-events-none" style="background: radial-gradient(circle at 20% 80%, rgba(120,119,198,0.1) 0%, transparent 50%);"></div>
+    <div class="fixed inset-0 bg-gradient-radial from-pink-400/10 via-transparent to-transparent pointer-events-none" style="background: radial-gradient(circle at 80% 20%, rgba(255,119,198,0.1) 0%, transparent 50%);"></div>
+
+    <!-- Header -->
+    <header id="header" class="fixed top-0 w-full z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-2">
+                    <i data-lucide="rocket" class="h-8 w-8 text-cyan-400"></i>
+                    <span class="text-2xl font-bold text-cyan-400 font-mono">LEPTON</span>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <button onclick="scrollToSection('#hero')" class="text-slate-300 hover:text-cyan-400 transition-colors duration-200 font-medium">Ana Sayfa</button>
+                    <button onclick="scrollToSection('#about')" class="text-slate-300 hover:text-cyan-400 transition-colors duration-200 font-medium">Hakkımızda</button>
+                    <button onclick="scrollToSection('#projects')" class="text-slate-300 hover:text-cyan-400 transition-colors duration-200 font-medium">Projeler</button>
+                    <button onclick="scrollToSection('#team')" class="text-slate-300 hover:text-cyan-400 transition-colors duration-200 font-medium">Ekip</button>
+                    <button onclick="scrollToSection('#sponsors')" class="text-slate-300 hover:text-cyan-400 transition-colors duration-200 font-medium">Sponsorlar</button>
+                    <button onclick="scrollToSection('#contact')" class="text-slate-300 hover:text-cyan-400 transition-colors duration-200 font-medium">İletişim</button>
+                </nav>
+
+                <!-- Mobile menu button -->
+                <button id="mobile-menu-btn" class="md:hidden text-cyan-400 p-2">
+                    <i data-lucide="menu" class="h-6 w-6"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div id="mobile-menu" class="mobile-menu md:hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1 bg-slate-900/95 backdrop-blur-md rounded-lg mb-4">
+                    <button onclick="scrollToSection('#hero')" class="block w-full text-left px-3 py-2 text-slate-300 hover:text-cyan-400 hover:bg-slate-800 rounded-md transition-colors duration-200">Ana Sayfa</button>
+                    <button onclick="scrollToSection('#about')" class="block w-full text-left px-3 py-2 text-slate-300 hover:text-cyan-400 hover:bg-slate-800 rounded-md transition-colors duration-200">Hakkımızda</button>
+                    <button onclick="scrollToSection('#projects')" class="block w-full text-left px-3 py-2 text-slate-300 hover:text-cyan-400 hover:bg-slate-800 rounded-md transition-colors duration-200">Projeler</button>
+                    <button onclick="scrollToSection('#team')" class="block w-full text-left px-3 py-2 text-slate-300 hover:text-cyan-400 hover:bg-slate-800 rounded-md transition-colors duration-200">Ekip</button>
+                    <button onclick="scrollToSection('#sponsors')" class="block w-full text-left px-3 py-2 text-slate-300 hover:text-cyan-400 hover:bg-slate-800 rounded-md transition-colors duration-200">Sponsorlar</button>
+                    <button onclick="scrollToSection('#contact')" class="block w-full text-left px-3 py-2 text-slate-300 hover:text-cyan-400 hover:bg-slate-800 rounded-md transition-colors duration-200">İletişim</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="relative">
+        <!-- Hero Section -->
+        <section id="hero" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+            <!-- Animated background elements -->
+            <div class="absolute inset-0">
+                <div class="absolute top-20 left-10 w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
+                <div class="absolute top-40 right-20 w-1 h-1 bg-purple-400 rounded-full animate-ping"></div>
+                <div class="absolute bottom-40 left-20 w-1.5 h-1.5 bg-pink-400 rounded-full animate-pulse"></div>
+                <div class="absolute bottom-20 right-10 w-2 h-2 bg-cyan-400 rounded-full animate-ping"></div>
+            </div>
+
+            <div class="text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+                <div class="mb-8">
+                    <i data-lucide="rocket" class="h-16 w-16 text-cyan-400 mx-auto mb-6 animate-bounce"></i>
+                </div>
+
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                    Lepton Roket Takımı
+                </h1>
+
+                <p class="text-xl sm:text-2xl text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+                    Türkiye'nin geleceğini gökyüzüne taşıyoruz.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <button onclick="scrollToSection('#about')" class="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white font-semibold px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 flex items-center">
+                        Bizi Tanıyın
+                        <i data-lucide="arrow-down" class="ml-2 h-5 w-5"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Scroll indicator -->
+            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <i data-lucide="arrow-down" class="h-6 w-6 text-slate-400"></i>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl sm:text-4xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                        Hakkımızda
+                    </h2>
+                    <p class="text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed">
+                        2025 yılında kurulan Lepton Roket Takımı, lise düzeyinde TEKNOFEST yarışmalarına katılmak üzere kurulmuş, 6 kişilik bir öğrenci grubudur. Amacımız, roket teknolojilerinde yenilikçi çözümler geliştirerek Türkiye'nin uzay teknolojilerindeki geleceğine katkıda bulunmaktır.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-slate-900/50 border border-slate-700 hover:border-cyan-400/50 transition-all duration-300 group rounded-lg p-6 text-center">
+                        <div class="mb-4">
+                            <i data-lucide="target" class="h-12 w-12 text-cyan-400 mx-auto group-hover:scale-110 transition-transform duration-300"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 text-slate-100">Misyonumuz</h3>
+                        <p class="text-slate-300 leading-relaxed">TEKNOFEST yarışmalarında başarı elde etmek ve roket teknolojilerinde öncü olmak.</p>
+                    </div>
+
+                    <div class="bg-slate-900/50 border border-slate-700 hover:border-cyan-400/50 transition-all duration-300 group rounded-lg p-6 text-center">
+                        <div class="mb-4">
+                            <i data-lucide="users" class="h-12 w-12 text-cyan-400 mx-auto group-hover:scale-110 transition-transform duration-300"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 text-slate-100">Takımımız</h3>
+                        <p class="text-slate-300 leading-relaxed">6 kişilik deneyimli öğrenci grubu ile multidisipliner yaklaşım.</p>
+                    </div>
+
+                    <div class="bg-slate-900/50 border border-slate-700 hover:border-cyan-400/50 transition-all duration-300 group rounded-lg p-6 text-center">
+                        <div class="mb-4">
+                            <i data-lucide="trophy" class="h-12 w-12 text-cyan-400 mx-auto group-hover:scale-110 transition-transform duration-300"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 text-slate-100">Hedefimiz</h3>
+                        <p class="text-slate-300 leading-relaxed">Yenilikçi roket tasarımları ile ulusal başarılar elde etmek.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900/30">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl sm:text-4xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                        Projelerimiz
+                    </h2>
+                    <p class="text-lg text-slate-300 max-w-3xl mx-auto">
+                        TEKNOFEST 2025 için geliştirdiğimiz roket projelerinde kullandığımız teknolojiler ve süreçler.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-slate-900/50 border border-slate-700 hover:border-cyan-400/50 transition-all duration-300 group rounded-lg">
+                        <div class="p-6">
+                            <div class="flex items-center space-x-3 mb-4">
+                                <i data-lucide="rocket" class="h-8 w-8 text-cyan-400 group-hover:scale-110 transition-transform duration-300"></i>
+                                <div>
+                                    <h3 class="text-xl font-semibold text-slate-100">Roket Tasarımı</h3>
+                                    <span class="text-sm px-3 py-1 rounded-full font-medium bg-green-500/20 text-green-400 border border-green-400/30">Devam Ediyor</span>
+                                </div>
+                            </div>
+                            <p class="text-slate-300 leading-relaxed">SolidWorks ve OpenRocket kullanılarak aerodinamik ve yapısal analizlerle optimize edilmiş roket tasarımları geliştiriliyor.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900/50 border border-slate-700 hover:border-cyan-400/50 transition-all duration-300 group rounded-lg">
+                        <div class="p-6">
+                            <div class="flex items-center space-x-3 mb-4">
+                                <i data-lucide="bar-chart-3" class="h-8 w-8 text-cyan-400 group-hover:scale-110 transition-transform duration-300"></i>
+                                <div>
+                                    <h3 class="text-xl font-semibold text-slate-100">Simülasyon ve Analiz</h3>
+                                    <span class="text-sm px-3 py-1 rounded-full font-medium bg-green-500/20 text-green-400 border border-green-400/30">Devam Ediyor</span>
+                                </div>
+                            </div>
+                            <p class="text-slate-300 leading-relaxed">Roketin uçuş profili, iniş sistemleri ve performans parametreleri üzerine detaylı simülasyonlar yapılıyor.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900/50 border border-slate-700 hover:border-cyan-400/50 transition-all duration-300 group rounded-lg">
+                        <div class="p-6">
+                            <div class="flex items-center space-x-3 mb-4">
+                                <i data-lucide="cog" class="h-8 w-8 text-cyan-400 group-hover:scale-110 transition-transform duration-300"></i>
+                                <div>
+                                    <h3 class="text-xl font-semibold text-slate-100">Mekanik Sistemler</h3>
+                                    <span class="text-sm px-3 py-1 rounded-full font-medium bg-yellow-500/20 text-yellow-400 border border-yellow-400/30">Planlama</span>
+                                </div>
+                            </div>
+                            <p class="text-slate-300 leading-relaxed">Kurtarma sistemi, gövde yapısı ve motor montajı için mekanik tasarım ve prototip testleri gerçekleştiriliyor.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900/50 border border-slate-700 hover:border-cyan-400/50 transition-all duration-300 group rounded-lg">
+                        <div class="p-6">
+                            <div class="flex items-center space-x-3 mb-4">
+                                <i data-lucide="zap" class="h-8 w-8 text-cyan-400 group-hover:scale-110 transition-transform duration-300"></i>
+                                <div>
+                                    <h3 class="text-xl font-semibold text-slate-100">Aviyonik Sistemler</h3>
+                                    <span class="text-sm px-3 py-1 rounded-full font-medium bg-blue-500/20 text-blue-400 border border-blue-400/30">Başlangıç</span>
+                                </div>
+                            </div>
+                            <p class="text-slate-300 leading-relaxed">Uçuş bilgisayarı, sensörler ve telemetri sistemleri için elektronik tasarım ve yazılım geliştirme.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section id="team" class="py-20 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl sm:text-4xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                        Ekibimiz
+                    </h2>
+                    <p class="text-lg text-slate-300 max-w-3xl mx-auto">
+                        Deneyimli ve tutkulu ekibimizle roket teknolojilerinde yenilikçi çözümler geliştiriyoruz.
+                    </p>
+                </div>
+
+                <!-- Advisor -->
+                <div class="flex justify-center mb-12">
+                    <div class="bg-gradient-to-br from-purple-900/50 to-cyan-900/50 border border-purple-400/50 max-w-sm rounded-lg p-6 text-center">
+                        <i data-lucide="graduation-cap" class="h-12 w-12 text-purple-400 mx-auto mb-4"></i>
+                        <h3 class="text-lg font-semibold text-purple-400 mb-2">Takım Danışmanı</h3>
+                        <p class="text-xl font-bold text-slate-100">Çağrı Durmaz</p>
+                    </div>
+                </div>
+
+                <!-- Team Grid -->
+                <div class="grid grid-cols-3 gap-6 max-w-4xl mx-auto">
+                    <!-- First Row -->
+                    <div class="bg-slate-900/50 border border-slate-700 hover:border-cyan-400/50 transition-all duration-300 group rounded-lg p-6 text-center">
+                        <i data-lucide="user" class="h-10 w-10 text-slate-400 mx-auto mb-4 group-hover:text-cyan-400 transition-colors duration-300"></i>
+                        <h3 class="text-sm font-semibold text-slate-400 mb-2">Üye</h3>
+                        <p class="text-lg font-bold text-slate-100 mb-2">Yağız Kaan GÜÇLÜ</p>
+                        <p class="text-slate-300 text-sm mb-1">12. Sınıf Yüksel-İlhan Alanyalı Fen Lisesi</p>
+                        <p class="text-cyan-300 text-sm font-medium">Yer İstasyonu Tasarımı</p>
+                    </div>
+
+                    <div class="bg-slate-900/50 border border-slate-700 hover:border-cyan-400/50 transition-all duration-300 group rounded-lg p-6 text-center">
+                        <i data-lucide="user" class="h-10 w-10 text-slate-400 mx-auto mb-4 group-hover:text-cyan-400 transition-colors duration-300"></i>
+                        <h3 class="text-sm font-semibold text-slate-400 mb-2">Takım Kaptanı</h3>
+                        <p class="text-lg font-bold text-slate-100 mb-2">Yağız Adem ALMALI</p>
+                        <p class="text-slate-300 text-sm mb-1">11. Sınıf Yüksel-İlhan Alanyalı Fen Lisesi</p>
+                        <p class="text-cyan-300 text-sm font-medium">OpenRocket Tasarımı - Aviyonik</p>
+                    </div>
+
+                    <div class="bg-slate-900/50 border border-slate-700 hover:border-cyan-400/50 transition-all duration-300 group rounded-lg p-6 text-center">
+                        <i data-lucide="user" class="h-10 w-10 text-slate-400 mx-auto mb-4 group-hover:text-cyan-400 transition-colors duration-300"></i>
+                        <h3 class="text-sm font-semibold text-slate-400 mb-2">Üye</h3>
+                        <p class="text-lg font-bold text-slate-100 mb-2">Mert Duran DURSUN</p>
+                        <p class="text-slate-300 text-sm mb-1">11. Sınıf Yüksel-İlhan Alanyalı Fen Lisesi</p>
+                        <p class="text-cyan-300 text-sm font-medium">Mekanik ve Prototip Testleri</p>
+                    </div>
+
+                    <!-- Second Row -->
+                    <div class="bg-slate-900/50 border border-slate-700 hover:border-cyan-400/50 transition-all duration-300 group rounded-lg p-6 text-center">
+                        <i data-lucide="user" class="h-10 w-10 text-slate-400 mx-auto mb-4 group-hover:text-cyan-400 transition-colors duration-300"></i>
+                        <h3 class="text-sm font-semibold text-slate-400 mb-2">Üye</h3>
+                        <p class="text-lg font-bold text-slate-100 mb-2">Mevlü Burak CEYLAN</p>
+                        <p class="text-slate-300 text-sm mb-1">11. Sınıf Yüksel-İlhan Alanyalı Fen Lisesi</p>
+                        <p class="text-cyan-300 text-sm font-medium">Kurtarma Sistemi Tasarımı</p>
+                    </div>
+
+                    <div class="bg-slate-900/50 border border-slate-700 hover:border-cyan-400/50 transition-all duration-300 group rounded-lg p-6 text-center">
+                        <i data-lucide="user" class="h-10 w-10 text-slate-400 mx-auto mb-4 group-hover:text-cyan-400 transition-colors duration-300"></i>
+                        <h3 class="text-sm font-semibold text-slate-400 mb-2">Üye</h3>
+                        <p class="text-lg font-bold text-slate-100 mb-2">Bedirhan YANAR</p>
+                        <p class="text-slate-300 text-sm mb-1">11. Sınıf Yüksel-İlhan Alanyalı Fen Lisesi</p>
+                        <p class="text-cyan-300 text-sm font-medium">CAD Tasarımı</p>
+                    </div>
+
+                    <div class="bg-slate-900/50 border border-slate-700 hover:border-cyan-400/50 transition-all duration-300 group rounded-lg p-6 text-center">
+                        <i data-lucide="user" class="h-10 w-10 text-slate-400 mx-auto mb-4 group-hover:text-cyan-400 transition-colors duration-300"></i>
+                        <h3 class="text-sm font-semibold text-slate-400 mb-2">Üye</h3>
+                        <p class="text-lg font-bold text-slate-100 mb-2">Elif Naz KALKAN</p>
+                        <p class="text-slate-300 text-sm mb-1">9. Sınıf Yüksel-İlhan Alanyalı Fen Lisesi</p>
+                        <p class="text-cyan-300 text-sm font-medium">Aviyonik</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sponsors Section -->
+        <section id="sponsors" class="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900/30">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                    Sponsorlar
+                </h2>
+
+                <div class="bg-slate-900/50 border border-slate-700 hover:border-cyan-400/50 transition-all duration-300 rounded-lg p-12">
+                    <i data-lucide="handshake" class="h-16 w-16 text-cyan-400 mx-auto mb-6"></i>
+                    <h3 class="text-2xl font-semibold text-slate-100 mb-4">Sponsorlarımızı Arıyoruz</h3>
+                    <p class="text-lg text-slate-300 mb-8 leading-relaxed">
+                        Lepton Roket Takımı olarak, TEKNOFEST 2025 yarışmalarında Türkiye'yi temsil etmek için destekçilerimizi arıyoruz. Projelerimize sponsor olmak ve gençlerin teknoloji alanındaki gelişimine katkıda bulunmak için bizimle iletişime geçin.
+                    </p>
+
+                    <div class="space-y-4">
+                        <h4 class="text-xl font-semibold text-slate-100">Sponsorluk Avantajları:</h4>
+                        <ul class="text-slate-300 space-y-2 max-w-2xl mx-auto">
+                            <li>• Roket üzerinde logo ve marka görünürlüğü</li>
+                            <li>• Sosyal medya ve web sitesinde yer alma</li>
+                            <li>• Gençlerin eğitimine katkıda bulunma</li>
+                        </ul>
+                    </div>
+
+                    <button onclick="scrollToSection('#contact')" class="mt-8 bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white font-semibold px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 flex items-center mx-auto">
+                        <i data-lucide="mail" class="mr-2 h-5 w-5"></i>
+                        İletişime Geçin
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl sm:text-4xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                        İletişim
+                    </h2>
+                    <p class="text-lg text-slate-300 max-w-3xl mx-auto">
+                        Projelerimiz hakkında daha fazla bilgi almak veya sponsorluk için bizimle iletişime geçin.
+                    </p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-12 max-w-4xl mx-auto">
+                    <div class="bg-slate-900/50 border border-slate-700 rounded-lg p-8">
+                        <h3 class="text-2xl font-semibold text-slate-100 mb-6">Bize Ulaşın</h3>
+
+                        <div class="text-center space-y-6">
+                            <div class="flex items-center justify-center space-x-3">
+                                <i data-lucide="mail" class="h-8 w-8 text-cyan-400"></i>
+                                <div>
+                                    <p class="text-slate-300 font-medium mb-2">E-posta ile iletişime geçin</p>
+                                    <a href="mailto:leptonroket@gmail.com" class="text-cyan-400 hover:text-cyan-300 transition-colors text-lg font-semibold">
+                                        leptonroket@gmail.com
+                                    </a>
+                                </div>
+                            </div>
+
+                            <a href="mailto:leptonroket@gmail.com" class="w-full bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white font-semibold py-3 rounded-full transition-all duration-300 transform hover:scale-105 flex items-center justify-center">
+                                <i data-lucide="mail" class="mr-2 h-5 w-5"></i>
+                                E-posta Gönder
+                            </a>
+
+                            <p class="text-slate-400 text-sm">
+                                Sponsorluk, işbirliği veya projelerimiz hakkında sorularınız için doğrudan e-posta gönderin.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <div class="space-y-8">
+                        <div class="bg-slate-900/50 border border-slate-700 rounded-lg p-8">
+                            <h3 class="text-2xl font-semibold text-slate-100 mb-6">İletişim Bilgileri</h3>
+
+                            <div class="space-y-6">
+                                <div class="flex items-start space-x-4">
+                                    <i data-lucide="mail" class="h-6 w-6 text-cyan-400 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <p class="text-slate-300 font-medium">E-posta</p>
+                                        <a href="mailto:leptonroket@gmail.com" class="text-cyan-400 hover:text-cyan-300 transition-colors">
+                                            leptonroket@gmail.com
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start space-x-4">
+                                    <i data-lucide="map-pin" class="h-6 w-6 text-cyan-400 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <p class="text-slate-300 font-medium">Konum</p>
+                                        <p class="text-slate-400 text-sm leading-relaxed">
+                                            Yüksel - İlhan Alanyalı Fen Lisesi<br>
+                                            Karlıktepe, Güneş Sk. No:1<br>
+                                            34870 Kartal/İstanbul
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-900/50 border border-slate-700 rounded-lg p-8">
+                            <h3 class="text-2xl font-semibold text-slate-100 mb-6">Sosyal Medya</h3>
+
+                            <div class="flex space-x-6">
+                                <a href="https://instagram.com/leptonroket" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-12 h-12 bg-slate-800 rounded-full text-slate-400 hover:text-pink-400 transition-all duration-300 transform hover:scale-110">
+                                    <i data-lucide="instagram" class="h-6 w-6"></i>
+                                </a>
+                                <a href="https://linkedin.com/in/leptonroket" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-12 h-12 bg-slate-800 rounded-full text-slate-400 hover:text-blue-400 transition-all duration-300 transform hover:scale-110">
+                                    <i data-lucide="linkedin" class="h-6 w-6"></i>
+                                </a>
+                                <a href="https://x.com/leptonroket" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-12 h-12 bg-slate-800 rounded-full text-slate-400 hover:text-cyan-400 transition-all duration-300 transform hover:scale-110">
+                                    <i data-lucide="twitter" class="h-6 w-6"></i>
+                                </a>
+                            </div>
+
+                            <p class="text-slate-400 text-sm mt-4">
+                                Projelerimizi takip edin ve güncellemelerden haberdar olun!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 border-t border-slate-800 py-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col items-center space-y-4">
+                <div class="flex items-center space-x-2">
+                    <i data-lucide="rocket" class="h-6 w-6 text-cyan-400"></i>
+                    <span class="text-xl font-bold text-cyan-400 font-mono">LEPTON</span>
+                </div>
+
+                <p class="text-slate-400 text-center">&copy; 2025 Lepton Roket Takımı. Tüm hakları saklıdır.</p>
+
+                <p class="text-slate-500 text-sm text-center">Türkiye'nin geleceğini gökyüzüne taşıyoruz.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Smooth scrolling function
+        function scrollToSection(selector) {
+            const element = document.querySelector(selector);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+                // Close mobile menu if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                const menuBtn = document.getElementById('mobile-menu-btn');
+                mobileMenu.classList.remove('open');
+                menuBtn.querySelector('i').setAttribute('data-lucide', 'menu');
+                lucide.createIcons();
+            }
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('bg-slate-950/95', 'backdrop-blur-md', 'border-b', 'border-slate-800');
+            } else {
+                header.classList.remove('bg-slate-950/95', 'backdrop-blur-md', 'border-b', 'border-slate-800');
+            }
+        });
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = this.querySelector('i');
+            
+            if (mobileMenu.classList.contains('open')) {
+                mobileMenu.classList.remove('open');
+                menuIcon.setAttribute('data-lucide', 'menu');
+            } else {
+                mobileMenu.classList.add('open');
+                menuIcon.setAttribute('data-lucide', 'x');
+            }
+            
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
